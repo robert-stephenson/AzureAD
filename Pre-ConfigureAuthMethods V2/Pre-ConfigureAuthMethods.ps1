@@ -1,17 +1,17 @@
 #install Microsoft.Graph module and dependancies and import required modules
-Install-Module Microsoft.Graph -AllowClobber -Force
+#Install-Module Microsoft.Graph -AllowClobber -Force
 Import-Module Microsoft.Graph.Authentication
 
 #Connect based on a service principal
-Connect-MgGraph -ClientId 00000000-0000-0000-0000-000000000000 -TenantId 00000000-0000-0000-0000-000000000000 -CertificateThumbprint 0000000000000000000000000000000000000000
-Select-MgProfile -Name "beta"
+#Connect-MgGraph -ClientId 00000000-0000-0000-0000-000000000000 -TenantId 00000000-0000-0000-0000-000000000000 -CertificateThumbprint 0000000000000000000000000000000000000000
+#Select-MgProfile -Name "beta"
 
 #if you want to connect interactive, comment the above two lines and use the ones mentioned below
-#Connect-MgGraph -Scopes "UserAuthenticationMethod.ReadWrite.All"
+Connect-MgGraph -Scopes "UserAuthenticationMethod.ReadWrite.All"
 #Select-MgProfile -Name "beta"
 
 #import-csv file
-$users = Import-Csv -Path "C:\Temp\AuthMethodsImport.csv"  -Delimiter ","
+$users = Import-Csv -Path "C:\users\robert.stephenson\downloads\PCCCAuth.csv"  -Delimiter ","
 
 Foreach ($User in $Users) {
     Write-Host "Configuring authentication methods for user" $user.upn -ForegroundColor Green
